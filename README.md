@@ -1,5 +1,13 @@
 # eipbench
 
+## License
+
+Apache 2.0 license [here](https://github.com/dritter-hd/dlog/blob/master/LICENSE)
+
+## Citation
+
+If you find this work useful for your research, please cite (for which the benchmark was initially developed):
+```
 @inproceedings{ritter2016benchmarking,
   title={Benchmarking integration pattern implementations},
   author={Ritter, Daniel and May, Norman and Sachs, Kai and Rinderle-Ma, Stefanie},
@@ -8,3 +16,6 @@
   year={2016},
   organization={ACM}
 }
+```
+
+
