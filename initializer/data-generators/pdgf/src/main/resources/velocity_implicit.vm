@@ -1,0 +1,8 @@
+#* @implicitly included *#
+#* @vtlvariable name="benchout" type="java.lang.String" *#
+#* @vtlvariable name="benchbase" type="java.lang.String" *#
+#* @vtlvariable name="benchdicts" type="java.lang.String" *#
+#* @vtlvariable name="separator" type="java.lang.String" *#
+#* @vtlvariable name="esc" type="org.apache.velocity.tools.generic.EscapeTool" *#
+#* @vtlvariable name="scaleFactor" type="int" *#
+

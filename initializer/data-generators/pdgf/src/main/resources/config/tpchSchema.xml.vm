@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="tpch">
+
+	<scaleFactor name="SF">$scaleFactor</scaleFactor> <!--sf 1 ~ 1Gb = 2^30 bytes -->
+	<!-- <scaleFactor name="SF">10</scaleFactor> --> <!-- 10GB -->
+	<!-- <scaleFactor name="SF">30</scaleFactor> --> <!-- 30GB -->
+	<!-- <scaleFactor name="SF">100</scaleFactor> --> <!-- 100GB -->
+	<!-- <scaleFactor name="SF">300</scaleFactor> --> <!-- 300GB -->
+	<!-- <scaleFactor name="SF">1000</scaleFactor> --> <!-- 1.000GB -->
+	<!-- <scaleFactor name="SF">3000</scaleFactor> --> <!-- 3.000GB -->
+	<!-- <scaleFactor name="SF">10000</scaleFactor> --> <!-- 10.000GB -->
+	<!-- <scaleFactor name="SF">30000</scaleFactor> --> <!-- 30.000GB -->
+	<!-- <scaleFactor name="SF">10000</scaleFactor> --> <!-- 100.000GB -->
+
+
+	<seed>1234567890</seed>
+	<rng name="PdgfDefaultRandom"></rng><!-- DEFAULT -->
+
+	<scheduler name="FixedJunkScheduler"></scheduler><!-- DEFAULT -->
+	<output name="CSVRowOutput">
+		<outputDir>${benchbase}${separator}${benchout}</outputDir>
+		<fileEnding>.csv</fileEnding>
+		<charset>UTF-8</charset>
+		<delimiter>,</delimiter><!-- Felder Trennzeichen in CSV File -->
+		<bufferSize></bufferSize><!-- use default:4098byte -->
+		<lineBufferScale>100</lineBufferScale>
+	</output>
+
+	<tables>
+		<table name="NATION">
+			<size>25</size>
+			<fixedSize>true</fixedSize>
+			<static>true</static>
+			<fields>
+				<field name="N_NATIONKEY"><!-- >= 0 -->
+					<type>java.sql.Types.INTEGER</type>
+					<primary>true</primary>
+					<generator name="IdGenerator">
+						<min>0</min>
+					</generator>
+				</field>
+
+				<field name="N_NAME">
+					<type>java.sql.Types.VARCHAR</type>
+					<size>25</size>
+					<generator name="DictList">
+						<disableRng>true</disableRng>
+						<unique>true</unique><!-- selcted rows must be unique (sampling without 
+							replacement) -->
+						<file>$benchbase${separator}$benchdicts${separator}tpc-h${separator}nations.dict</file><!-- -->
+					</generator>
+				</field>
+
+				<field name="N_REGIONKEY">
+					<type>java.sql.Types.INTEGER</type>
+					<generator name="DictList">
+						<disableRng>true</disableRng>
+						<unique>true</unique><!-- selcted rows must be unique (sampling without 
+							replacement) -->
+						<file>$benchbase${separator}$benchdicts${separator}tpc-h${separator}nationsRegions.dict</file><!-- -->
+					</generator>
+				</field>
+
+				<field name="N_COMMENT">
+					<type>java.sql.Types.VARCHAR</type>
+					<size>152</size>
+					<generator name="tpc.h.generators.TextString">
+						<size>95</size>
+					</generator>
+				</field>
+			</fields>
+		</table>
+
+
+		<table name="REGION">
+			<size>5</size>
+			<fixedSize>true</fixedSize>
+			<static>true</static>
+			<fields>
+				<field name="R_REGIONKEY"><!-- >= 0 -->
+					<type>java.sql.Types.INTEGER</type>
+					<primary>true</primary>
+					<generator name="IdGenerator">
+						<min>0</min>
+					</generator>
+				</field>
+
+				<field name="R_NAME">
+					<type>java.sql.Types.VARCHAR</type>
+					<size>25</size>
+					<generator name="DictList">
+						<disableRng>true</disableRng>
+						<unique>true</unique><!-- selcted rows must be unique (sampling without 
+							replacement) -->
+						<file>$benchbase${separator}$benchdicts${separator}tpc-h${separator}region.dict</file><!-- -->
+					</generator>
+				</field>
+
+				<field name="R_COMMENT">
+					<type>java.sql.Types.VARCHAR</type>
+					<size>152</size>
+					<generator name="tpc.h.generators.TextString">
+						<size>95</size>
+					</generator>
+				</field>
+			</fields>
+		</table>
+
+
+
+		<table name="PART">
+			<size>200000</size>
+
+			<fields>
+				<field name="P_PARTKEY"><!-- >= 0 -->
+					<type>java.sql.Types.INTEGER</type>
+					<!-- identifier! Integer only 2 milliarden rows :-( -->
+					<primary>true</primary>
+					<generator name="IdGenerator">
+					</generator>
+				</field>
+
+
+				<field name="P_NAME">
+					<type>java.sql.Types.VARCHAR</type>
+					<size>55</size>
+					<generator name="DictList">
+						<unique>true</unique><!-- selcted rows must be unique (sampling without 
+							replacement) -->
+						<size>5</size><!-- select 5 rows from file and concatenate them -->
+						<seperator> </seperator><!-- rows are seperated by a single whitespace -->
+						<file>$benchbase${separator}$benchdicts${separator}tpc-h${separator}P_NAME.dict</file>
+					</generator>
+				</field>
+				<field name="P_MFGR">
+					<type>java.sql.Types.VARCHAR</type>
+					<size>25</size>
+					<generator name="tpc.h.generators.TextAppendedWithDigit">
+						<text>Manufacturer</text>
+						<!-- <digitSource>some foreign key</digitSource> -->
+						<min>1</min>
+						<max>5</max>
+						<cache>true</cache>
+					</generator>
+				</field>
+
+				<field name="P_BRAND">
+					<type>java.sql.Types.VARCHAR</type>
+					<size>10</size>
+					<generator name="tpc.h.generators.TextAppendedWithDigit">
+						<text>Brand</text>
+						<digitSource>P_MFGR</digitSource>
+						<min>1</min>
+						<max>5</max>
+						<cache>false</cache>
+					</generator>
+				</field>
+
+				<field name="P_TYPE">
+					<type>java.sql.Types.VARCHAR</type>
+					<size>25</size>
+					<generator name="DictList">
+						<file>$benchbase${separator}$benchdicts${separator}tpc-h${separator}types.dict</file>
+					</generator>
+				</field>
+
+				<field name="P_SIZE"> <!-- >= 0 -->
+					<type>java.sql.Types.INTEGER</type>
+					<!-- Integer means that the column must be able to exactly represent 
+						integer values (i.e., values in increments of 1) in the range of at least 
+						-2,147,483,646 to 2,147,483,647. -->
+					<generator name="tpc.h.generators.RandomValueXY">
+						<x>1</x>
+						<y>50</y>
+					</generator>
+				</field>
+
+				<field name="P_CONTAINER">
+					<type>java.sql.Types.VARCHAR</type>
+					<size>10</size>
+					<generator name="DictList">
+						<file>$benchbase${separator}$benchdicts${separator}tpc-h${separator}containers.dict</file>
+					</generator>
+				</field>
+
+				<field name="P_RETAILPRICE"><!-- >= 0 -->
+					<type>java.sql.Types.DECIMAL</type>
+					<!-- Decimal means that the column must be able to represent values 
+						in the range -9,999,999,999.99 to +9,999,999,999.99 in increments of 0.01; 
+						the values can be either represented exactly or interpreted to be in this 
+						range; -->
+					<generator name="tpc.h.generators.P_Retailprice">
+						
+					</generator>
+				</field>
+
+				<field name="P_COMMENT">
+					<type>java.sql.Types.VARCHAR</type>
+					<size>23</size>
+					<generator name="tpc.h.generators.TextString">
+						<size>14</size>
+					</generator>
+				</field>
+			</fields>
+		</table>
+
+		<table name="SUPPLIER">
+			<size>10000</size>
+
+			<fields>
+				<field name="S_SUPPKEY"><!-- >= 0 -->
+					<type>java.sql.Types.INTEGER</type>
+					<primary>true</primary>
+					<generator name="IdGenerator">
+					</generator>
+				</field>
+
+				<field name="S_NAME">
+					<type>java.sql.Types.VARCHAR</type>
+					<size>25</size>
+					<generator name="tpc.h.generators.TextAppendedWithDigit">
+						<!--<distribution name="Uniform"></distribution>-->
+						<text>Supplier</text>
+						<digitSource>S_SUPPKEY</digitSource>
+					</generator>
+				</field>
+
+				<field name="S_ADDRESS">
+					<type>java.sql.Types.VARCHAR</type>
+					<size>40</size>
+					<generator name="tpc.h.generators.RandomVString">
+						<size>25</size>
+					</generator>
+				</field>
+
+				<field name="S_NATIONKEY"><!-- >= 0 -->
+					<type>java.sql.Types.INTEGER</type>
+					<!-- <reference> <referencedField>N_NATIONKEY</referencedField> <referencedTable>NATION</referencedTable> 
+						</reference> <generator name="DefaultReferenceGenerator"> <disableState>true</disableState> 
+						<distribution name="Uniform"> <mu></mu> <sigma></sigma> </distribution> </generator> -->
+					<generator name="IntGenerator">
+						<min>0</min>
+						<max>24</max>
+					</generator>
+				</field>
+
+				<field name="S_PHONE">
+					<type>java.sql.Types.VARCHAR</type>
+					<size>15</size>
+					<generator name="tpc.h.generators.PhoneNumber">
+					</generator>
+				</field>
+
+				<field name="S_ACCTBAL">
+					<type>java.sql.Types.DECIMAL</type>
+					<generator name="tpc.h.generators.RandomValueXY">
+						<x>-999.99</x>
+						<y>9999.99</y>
+					</generator>
+					<!-- DoubleGenerator is slower than tpc.h.generators.RandomValueXY 
+						because of very complex conversion double -> String RandomValueXY operates 
+						on int´s and char[]´s <generator name ="DoubleGenerator"> <distribution name="Uniform"></distribution> 
+						<mind>-999.99</mind> <maxd>9999.99</maxd> <decimalPlaces>2</decimalPlaces> 
+						</generator> -->
+				</field>
+
+				<field name="S_COMMENT">
+					<type>java.sql.Types.VARCHAR</type>
+					<size>110</size>
+					<generator name="tpc.h.generators.TextString_S_Comment">
+						<!--TESTING NEEDED! ==> SF * 5 rows are randomly selected to hold at 
+							a random position a string matching "Customer% Complaints". Another SF * 
+							5 rows are randomly selected to hold at a random position a string matching 
+							"Customer%Recommends", where % is a wildcard that denotes zero or more characters. -->
+
+						<size>63</size>
+					</generator>
+				</field>
+			</fields>
+		</table>
+
+		<table name="PARTSUPP">
+			<size>10000</size>
+			<fields>
+				<field name="PS_PARTKEY"><!-- >= 0 -->
+					<type>java.sql.Types.INTEGER</type>
+					<primary>true</primary>
+					<generator name="tpc.h.generators.Ps_Partkey">
+					</generator>
+				</field>
+
+				<field name="PS_SUPPKEY">
+					<type>java.sql.Types.INTEGER</type>
+					<primary>true</primary>
+					<generator name="tpc.h.generators.Ps_Suppkey">
+					</generator>
+				</field>
+
+				<field name="PS_AVAILQTY"><!-- >= 0 -->
+					<type>java.sql.Types.INTEGER</type>
+					<generator name="tpc.h.generators.RandomValueXY">
+						<x>1</x>
+						<y>9999</y>
+					</generator>
+				</field>
+
+				<field name="PS_SUPPLYCOST"><!-- >= 0 -->
+					<type>java.sql.Types.DECIMAL</type>
+					<generator name="tpc.h.generators.RandomValueXY">
+						<x>1.00</x>
+						<y>1000.00</y>
+					</generator>
+				</field>
+
+				<field name="PS_COMMENT">
+					<type>java.sql.Types.VARCHAR</type>
+					<size>199</size>
+					<generator name="tpc.h.generators.TextString">
+						<size>63</size>
+					</generator>
+				</field>
+			</fields>
+		</table>
+
+
+
+		<table name="CUSTOMER">
+			<size>150000</size>
+			<fields>
+				<field name="C_CUSTKEY"><!-- >= 0 -->
+					<type>java.sql.Types.INTEGER</type>
+					<primary>true</primary>
+					<generator name="IdGenerator">
+					</generator>
+				</field>
+
+				<field name="C_NAME">
+					<type>java.sql.Types.VARCHAR</type>
+					<size>25</size>
+					<generator name="tpc.h.generators.TextAppendedWithDigit">
+						<text>Customer</text>
+						<digitSource>C_CUSTKEY</digitSource>
+					</generator>
+				</field>
+
+				<field name="C_ADDRESS">
+					<type>java.sql.Types.VARCHAR</type>
+					<size>40</size>
+					<generator name="tpc.h.generators.RandomVString">
+						<size>25</size>
+					</generator>
+				</field>
+
+				<field name="C_NATIONKEY">
+					<type>java.sql.Types.INTEGER</type>
+					<generator name="tpc.h.generators.RandomValueXY">
+						<x>0</x>
+						<y>24</y>
+					</generator>
+				</field>
+
+				<field name="C_PHONE">
+					<type>java.sql.Types.VARCHAR</type>
+					<size>15</size>
+					<generator name="tpc.h.generators.PhoneNumber">
+					</generator>
+				</field>
+
+				<field name="C_ACCTBAL">
+					<type>java.sql.Types.DECIMAL</type>
+					<generator name="tpc.h.generators.RandomValueXY">
+						<x>-999.99</x>
+						<y>9999.99</y>
+					</generator>
+				</field>
+
+				<field name="C_MKTSEGMENT">
+					<type>java.sql.Types.VARCHAR</type>
+					<size>10</size>
+					<generator name="DictList">
+						<file>$benchbase${separator}$benchdicts${separator}tpc-h${separator}segments.dict</file>
+					</generator>
+				</field>
+
+				<field name="C_COMMENT">
+					<type>java.sql.Types.VARCHAR</type>
+					<size>117</size>
+					<generator name="tpc.h.generators.TextString">
+						<size>73</size>
+					</generator>
+				</field>
+			</fields>
+		</table>
+
+
+		<table name="ORDERS">
+			<size>1500000</size>
+			<fields>
+				<field name="O_ORDERKEY"><!-- >= 0 -->
+					<type>java.sql.Types.INTEGER</type>
+					<primary>true</primary>
+					<generator name="tpc.h.generators.O_OrderKey">
+					</generator>
+				</field>
+
+				<field name="O_CUSTKEY">
+					<type>java.sql.Types.INTEGER</type>
+					<generator name="tpc.h.generators.O_Custkey">
+					</generator>
+				</field>
+
+				<field name="O_ORDERSTATUS">
+					<type>java.sql.Types.VARCHAR</type>
+					<size>1</size>
+					<reference>
+						<!--L_SHIPDATE should be L_LINESTATUS, but for performance reasons 
+							we skip one reference and do recalculation of L_LINESTATUS from L_SHIPDATE 
+							in Generator O_Orderstatus -->
+						<Field>L_SHIPDATE</Field>
+						<table>LINEITEM</table>
+					</reference>
+					<generator name="tpc.h.generators.O_Orderstatus">
+					</generator>
+				</field>
+
+				<field name="O_TOTALPRICE"><!-- >= 0 -->
+					<type>java.sql.Types.DECIMAL</type>
+					<generator name="tpc.h.generators.O_TotalPrice">
+					</generator>
+				</field>
+
+				<field name="O_ORDERDATE">
+					<type>java.sql.Types.DATE</type>
+					<generator name="DateGenerator">
+						<startDate>1992-01-01</startDate>
+						<endDate>1998-08-02</endDate><!-- 1998-12-31 minus 151 tage -->
+					</generator>
+				</field>
+
+				<field name="O_ORDERPRIORITY">
+					<type>java.sql.Types.VARCHAR</type>
+					<size>15</size>
+					<generator name="DictList">
+						<file>$benchbase${separator}$benchdicts${separator}tpc-h${separator}priorities.dict</file>
+					</generator>
+				</field>
+
+				<field name="O_CLERK">
+					<type>java.sql.Types.VARCHAR</type>
+					<size>15</size>
+					<generator
+						name="tpc.h.generators.TextAppendedWithDigit_O_Clerk">
+						<text>Clerk</text>
+					</generator>
+				</field>
+
+				<field name="O_SHIPPRIORITY"><!-- set to 0 -->
+					<type>java.sql.Types.INTEGER</type>
+					<generator name="StaticValueGenerator">
+						<value>0</value>
+					</generator>
+				</field>
+				<field name="O_COMMENT">
+					<type>java.sql.Types.VARCHAR</type>
+					<size>79</size>
+					<generator name="tpc.h.generators.TextString">
+						<size>49</size>
+					</generator>
+				</field>
+			</fields>
+		</table>
+
+
+
+		<table name="LINEITEM">
+			<size>6000000</size>
+			<fields>
+				<field name="L_ORDERKEY"><!-- >= 0 -->
+					<type>java.sql.Types.INTEGER</type>
+					<primary>true</primary>
+					<generator name="tpc.h.generators.L_Orderkey">
+					</generator>
+				</field>
+
+				<field name="L_PARTKEY"><!-- >= 0 -->
+					<type>java.sql.Types.INTEGER</type>
+					<generator name="tpc.h.generators.L_Partkey">
+					</generator>
+				</field>
+
+				<field name="L_SUPPKEY">
+					<type>java.sql.Types.INTEGER</type>
+					<generator name="tpc.h.generators.L_Supkey">
+					</generator>
+				</field>
+
+				<field name="L_LINENUMBER"><!-- >= 0 -->
+					<type>java.sql.Types.INTEGER</type>
+					<primary>true</primary>
+					<generator name="tpc.h.generators.L_LineNumber">
+					</generator>
+				</field>
+
+				<field name="L_QUANTITY"><!-- >= 0 -->
+					<type>java.sql.Types.DECIMAL</type>
+					<generator name="tpc.h.generators.RandomValueXY">
+						<x>1</x>
+						<y>50</y>
+						<cacheLastValue>false</cacheLastValue>
+					</generator>
+				</field>
+				<field name="L_EXTENDEDPRICE"><!-- >= 0 -->
+					<type>java.sql.Types.DECIMAL</type>
+					<generator name="tpc.h.generators.L_ExtendedPrice">
+					</generator>
+				</field>
+				<field name="L_DISCOUNT"><!-- between 0.00 and 1.00 -->
+					<type>java.sql.Types.DECIMAL</type>
+					<generator name="tpc.h.generators.RandomValueXY">
+						<x>0.00</x>
+						<y>0.10</y>
+					</generator>
+				</field>
+				<field name="L_TAX"><!-- >= 0 -->
+					<type>java.sql.Types.DECIMAL</type>
+					<generator name="tpc.h.generators.RandomValueXY">
+						<x>0.00</x>
+						<y>0.08</y>
+					</generator>
+				</field>
+
+
+
+				<field name="L_SHIPDATE"><!-- SHIPDATE <= L_RECEIPTDATE -->
+					<type>java.sql.Types.DATE</type>
+					<reference>
+						<Field>O_ORDERDATE</Field>
+						<Table>ORDERS</Table>
+					</reference>
+					<generator name="tpc.h.generators.L_Shipdate">
+						<min>1</min>
+						<max>121</max>
+					</generator>
+				</field>
+
+				<field name="L_COMMITDATE">
+					<type>java.sql.Types.DATE</type>
+					<generator name="tpc.h.generators.L_Commitdate">
+						<min>30</min>
+						<max>90</max>
+					</generator>
+				</field>
+
+				<field name="L_RECEIPTDATE">
+					<type>java.sql.Types.DATE</type>
+					<generator name="tpc.h.generators.L_Receiptdate">
+						<min>1</min>
+						<max>30</max>
+					</generator>
+				</field>
+
+				<field name="L_RETURNFLAG">
+					<type>java.sql.Types.VARCHAR</type>
+					<size>1</size>
+					<generator name="tpc.h.generators.L_Returnflag">
+					</generator>
+				</field>
+
+				<field name="L_LINESTATUS">
+					<type>java.sql.Types.VARCHAR</type>
+					<size>1</size>
+					<generator name="tpc.h.generators.L_LineStatus">
+					</generator>
+				</field>
+
+				<field name="L_SHIPINSTRUCT">
+					<type>java.sql.Types.VARCHAR</type>
+					<size>25</size>
+					<generator name="DictList">
+						<file>$benchbase${separator}$benchdicts${separator}tpc-h${separator}instructions.dict</file><!-- -->
+					</generator>
+				</field>
+
+				<field name="L_SHIPMODE">
+					<type>java.sql.Types.VARCHAR</type>
+					<size>10</size>
+					<generator name="DictList">
+						<file>$benchbase${separator}$benchdicts${separator}tpc-h${separator}modes.dict</file><!-- -->
+					</generator>
+				</field>
+
+				<field name="L_COMMENT">
+					<type>java.sql.Types.VARCHAR</type>
+					<size>44</size>
+					<generator name="tpc.h.generators.TextString">
+						<size>27</size>
+					</generator>
+				</field>
+			</fields>
+		</table>
+	</tables>
+</project>

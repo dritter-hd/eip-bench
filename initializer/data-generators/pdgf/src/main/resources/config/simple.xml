@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="min">
+	
+	<!--Wenn größe der Table "foo" size=100 und sf 10 werden 1000 Zeilen
+		generiert-->
+	<scaleFactor>1</scaleFactor>
+
+	<seed>1234567890</seed>
+	<rng name="PdgfDefaultRandom"></rng><!-- DEFAULT -->
+	<scheduler name="FixedJunkScheduler"></scheduler><!-- DEFAULT -->
+	<output name="CSVRowOutput"><!-- DEFAULT -->
+		<outputDir>output/</outputDir>
+		<fileEnding>.csv</fileEnding>
+		<delimiter>,</delimiter><!-- Felder Trennzeichen in CSV File-->
+		
+		<!--
+		sollte der clustersize des verwendeten dateisystems entsprechen, 		oder	ein vielfaches davon
+		-->
+		<bufferSize></bufferSize>
+		
+	</output>
+	<tables>
+		<table name="simpleTable">
+			<size>10</size>
+			<fields>
+				<field name="id">
+					<type>java.sql.Types.INTEGER</type>
+					<primary>true</primary>
+					<unique>true</unique>
+					<size></size>
+					<generator name="IdGenerator">
+						<distribution name=""></distribution>
+						<rng name=""></rng>
+					</generator>
+				</field>
+				<field name="name">
+					<type>java.sql.Types.VARCHAR</type>
+					<size>20</size>
+					<generator name="DictList">
+						<distribution name=""></distribution>
+						<size>2</size> <!-- two names! and name1 != name2-->
+						<unique>true</unique>
+						<file>dicts/Given-Names.dict</file>
+					</generator>
+				</field>
+				<field name="Familyname">
+					<type>java.sql.Types.VARCHAR</type>
+					<size>20</size>
+					<generator name="DictList">
+						<distribution name=""></distribution>
+						<file>dicts/Family-Names.dict</file>
+					</generator>
+				</field>
+				<field name="age">
+					<type>java.sql.Types.INTEGER</type>
+					<size>20</size>
+					<generator name="IntGenerator">
+						<distribution name="LogNormal">
+							<mu>7.60021</mu>
+							<sigma>1.40058</sigma>
+						</distribution>
+						<min>1</min>
+						<max>100</max>
+					</generator>
+				</field>
+			</fields>
+		</table>
+	</tables>
+</project>

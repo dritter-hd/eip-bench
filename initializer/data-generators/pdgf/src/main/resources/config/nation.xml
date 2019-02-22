@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="tpch">
+
+        <scaleFactor name="SF">1</scaleFactor><!--sf 1 ~ 1Gb = 2^30 bytes -->
+        <!-- <scaleFactor name="SF">10</scaleFactor> --> <!-- 10GB -->
+        <!-- <scaleFactor name="SF">30</scaleFactor> --> <!-- 30GB -->
+        <!-- <scaleFactor name="SF">100</scaleFactor> --> <!-- 100GB -->
+        <!-- <scaleFactor name="SF">300</scaleFactor> --> <!-- 300GB -->
+        <!-- <scaleFactor name="SF">1000</scaleFactor> --> <!-- 1.000GB -->
+        <!-- <scaleFactor name="SF">3000</scaleFactor> --> <!-- 3.000GB -->
+        <!-- <scaleFactor name="SF">10000</scaleFactor> --> <!-- 10.000GB -->
+        <!-- <scaleFactor name="SF">30000</scaleFactor> --> <!-- 30.000GB -->
+        <!-- <scaleFactor name="SF">10000</scaleFactor> --> <!-- 100.000GB -->
+
+
+        <seed>1234567890</seed>
+        <rng name="PdgfDefaultRandom"></rng><!-- DEFAULT -->
+
+        <scheduler name="FixedJunkScheduler"></scheduler><!-- DEFAULT -->
+        <output name="CSVRowOutput">
+                <outputDir>../csv_data/</outputDir>
+                <fileEnding>.csv</fileEnding>
+                <charset>UTF-8</charset>
+                <delimiter>,</delimiter><!-- Felder Trennzeichen in CSV File -->
+                <bufferSize></bufferSize><!-- use default:4098byte -->
+                <lineBufferScale>100</lineBufferScale>
+
+        </output>        
+        <tables>
+                <table name="NATION">
+                        <size>25</size>
+                        <fixedSize>true</fixedSize>
+                        <static>true</static>
+                        <fields>
+                                <field name="N_NATIONKEY"><!-- >= 0 -->
+                                        <type>java.sql.Types.INTEGER</type>
+                                        <primary>true</primary>
+                                        <generator name="IdGenerator">
+                                                <min>0</min>
+                                        </generator>
+                                </field>
+
+                                <field name="N_NAME">
+                                        <type>java.sql.Types.VARCHAR</type>
+                                        <size>25</size>
+                                        <generator name="DictList">
+                                                <disableRng>true</disableRng>
+                                                <unique>true</unique><!-- selcted rows must be unique (sampling without 
+                                                        replacement) -->
+                                                <file>dicts/tpc-h/nations.dict</file><!-- -->
+                                        </generator>
+                                </field>
+
+                                <field name="N_REGIONKEY">
+                                        <type>java.sql.Types.INTEGER</type>
+                                        <generator name="DictList">
+                                                <disableRng>true</disableRng>
+                                                <unique>true</unique><!-- selcted rows must be unique (sampling without 
+                                                        replacement) -->
+                                                <file>dicts/tpc-h/nationsRegions.dict</file><!-- -->
+                                        </generator>
+                                </field>
+                                <field name="N_COMMENT">
+                                        <type>java.sql.Types.VARCHAR</type>
+                                        <size>6</size>
+                                        <generator name="tpc.h.generators.TextString">
+                                                <size>6</size>
+                                        </generator>
+                                </field>
+                        </fields>
+                </table>
+         </tables>	
+</project>

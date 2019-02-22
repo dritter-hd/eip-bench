@@ -1,0 +1,9 @@
+PseudoTextGenerator.adjectives=$esc.propertyValue("$benchbase${separator}dicts${separator}tpc-h${separator}adjectives.dict")
+PseudoTextGenerator.adverbs=$esc.propertyValue("$benchbase${separator}dicts${separator}tpc-h${separator}adverbs.dict")
+PseudoTextGenerator.auxiliaries=$esc.propertyValue("$benchbase${separator}dicts${separator}tpc-h${separator}auxiliaries.dict")
+PseudoTextGenerator.nouns=$esc.propertyValue("$benchbase${separator}dicts${separator}tpc-h${separator}nouns.dict")
+PseudoTextGenerator.prepositions=$esc.propertyValue("$benchbase${separator}dicts${separator}tpc-h${separator}prepositions.dict")
+PseudoTextGenerator.terminators=$esc.propertyValue("$benchbase${separator}dicts${separator}tpc-h${separator}terminators.dict")
+PseudoTextGenerator.verbs=$esc.propertyValue("$benchbase${separator}dicts${separator}tpc-h${separator}verbs.dict")
+PseudoTextGenerator.foo=$esc.propertyValue("foo${separator}bar.blub")
+bar=fobarblub

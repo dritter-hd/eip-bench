@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="paperSchema">
+
+	<scaleFactor>1</scaleFactor><!--sf 1 ~	-->
+	<seed>1234567890</seed>
+	<rng name="PdgfDefaultRandom"></rng>
+	<output name="CSVRowOutput">
+		<outputDir>output/</outputDir>
+		<fileEnding>.csv</fileEnding>
+		<delimiter>;</delimiter><!-- Felder Trennzeichen in CSV File-->
+	</output>
+	<tables>
+		<table name="user">
+			<size>13480</size>
+			<fields>
+				<field name="user_id">
+					<type>java.sql.Types.INTEGER</type>
+					<primary>true</primary>
+					<unique>true</unique>
+					<generator name="IdGenerator">
+						<distribution name=""></distribution>
+						<rng name=""></rng>
+					</generator>
+				</field>
+				<!--
+				<field name="name">
+					<type>java.sql.Types.VARCHAR</type>
+					<primary></primary>
+					<unique>true</unique>
+					<size>20</size>
+					<generator name="RandomString">
+						<distribution name=""></distribution>
+						<rng name=""></rng>
+						<min></min>
+						<max></max>
+						<file>dicts/Given-Names.dict</file>
+					</generator>
+				</field>
+				<field name="familyname">
+					<type>java.sql.Types.VARCHAR</type>
+					<primary></primary>
+					<unique>true</unique>
+					<size>20</size>
+					<generator name="RandomString">
+						<distribution name=""></distribution>
+						<rng name=""></rng>
+						<min></min>
+						<max></max>
+						<file>dicts/Family-Names.dict</file>
+					</generator>
+				</field>
+				-->
+				<field name="degree_program">
+					<type>java.sql.Types.VARCHAR</type>
+					<primary></primary>
+					<unique></unique>
+					<size>20</size>
+					<generator name="RandomString">
+						<distribution name=""></distribution>
+						<rng name=""></rng>
+						<min></min>
+						<max></max>
+						<file>dicts/degree.dict</file>
+					</generator>
+				</field>
+			</fields>
+		</table>
+		<table name="seminar">
+			<size>7661</size>
+			<fields>
+				<field name="seminar_id">
+					<type>java.sql.Types.INTEGER</type>
+					<primary>true</primary>
+					<unique>true</unique>
+					<size></size>
+					<generator name="IdGenerator">
+						<distribution name=""></distribution>
+						<rng name=""></rng>
+					</generator>
+				</field><!-- 
+				<field name="name">
+					<type>java.sql.Types.VARCHAR</type>
+					<primary></primary>
+					<unique>true</unique>
+					<size>20</size>
+					<generator name="RandomString">
+						<distribution name=""></distribution>
+						<rng name=""></rng>
+						<min></min>
+						<max></max>
+						<file>dicts/seminare.dict</file>
+					</generator>
+				</field>
+				 -->
+			</fields>
+		</table>
+	
+		<table name="user_seminare">
+			<size>201754</size>
+			<fields>
+			<!-- 
+				<field name="id">
+					<type>java.sql.Types.INTEGER</type>
+					<primary>true</primary>
+					<unique>true</unique>
+					<size></size>
+					<generator name="IdGenerator">
+						<distribution name=""></distribution>
+						<rng name=""></rng>
+					</generator>
+				</field>
+				 -->
+				<field name="user_id">
+					<type>java.sql.Types.INTEGER</type>
+					<primary>true</primary>
+					<unique>true</unique>
+					<size></size>
+					<reference>
+						<referencedField>user_id</referencedField>
+						<referencedTable>user</referencedTable>
+					</reference>
+					<generator name="DefaultReferenceGenerator">
+						<distribution name="LogNormal">
+							<mu>7.60021</mu>
+							<sigma>1.40058</sigma>
+						</distribution>
+						<rng name=""></rng>
+					</generator>
+				</field>
+					<field name="degree_program">
+					<type>java.sql.Types.VARCHAR</type>
+					<primary></primary>
+					<unique>true</unique>
+					<size>20</size>
+					<reference>
+						<referencedField>degree_program</referencedField>
+						<referencedTable>user</referencedTable>
+					</reference>
+					<generator name="DefaultReferenceGenerator">
+						<disableState>false</disableState>
+						<distribution name="LogNormal">
+							 <mu>7.60021</mu>
+							<sigma>1.40058</sigma>
+						</distribution>
+
+					</generator>
+				</field>
+				<field name="seminar_id">
+					<type>java.sql.Types.INTEGER</type>
+					<primary>true</primary>
+					<unique>true</unique>
+					<size></size>
+					<reference>
+						<referencedField>seminar_id</referencedField>
+						<referencedTable>seminar</referencedTable>
+					</reference>
+					<generator name="DefaultReferenceGenerator">
+						<disableState>false</disableState>
+						<distribution name="LogNormal">
+							<mu>6.2691 </mu>
+							<sigma>1.7453 </sigma>
+						</distribution>
+
+					</generator>
+				</field>
+			</fields>
+		</table>
+	</tables>
+</project>
+
+

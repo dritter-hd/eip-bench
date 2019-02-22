@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="setQuery">
+	
+	<scaleFactor>1</scaleFactor> <!-- 1978 ~100Gb -->
+	<seed>1234567890</seed>
+	<rng name="PdgfDefaultRandom"></rng>
+	<scheduler name="FixedJunkScheduler"></scheduler>
+	<output name="CSVRowOutput">
+		<outputDir>output/</outputDir>
+		<fileEnding>.csv</fileEnding>
+		<delimiter>;</delimiter><!-- Felder Trennzeichen in CSV File-->
+		<bufferSize></bufferSize><!-- sollte der clustersize des verwendeten dateisystems entsprechen, oder ein vielfaches davon-->
+		
+		
+	</output>
+	<tables>
+		<table name="setQuery">
+			<size>1000000</size><!-- bei SF 1 ~51,7Mb -->
+			<fields>
+				<field name="KSEQ">
+					<type>java.sql.Types.INTEGER</type>
+					<primary>true</primary>
+					<unique>true</unique>
+					<size></size>
+					<generator name="IdGenerator">
+						<distribution name=""></distribution>						
+						<rng name=""></rng>
+					</generator>
+				</field>
+				<field name="K500K">
+					<type>java.sql.Types.INTEGER</type>
+					<primary>false</primary>
+					<unique>false</unique>
+					<size></size>
+					<generator name="SetQuery">
+						<distribution name=""></distribution>						
+						<rng name=""></rng>
+						<min>1</min>
+						<max>500000</max>
+					</generator>
+				</field>
+
+				<field name="K250K">
+					<type>java.sql.Types.INTEGER</type>
+					<primary>false</primary>
+					<unique>false</unique>
+					<size></size>
+					<generator name="SetQuery">
+						<distribution name=""></distribution>						
+						<rng name=""></rng>
+						<min>1</min>
+						<max>500000</max>
+					</generator>
+				</field>
+
+				<field name="K100K">
+					<type>java.sql.Types.INTEGER</type>
+					<primary>false</primary>
+					<unique>false</unique>
+					<size></size>
+					<generator name="SetQuery">
+						<distribution name=""></distribution>						
+						<rng name=""></rng>
+						<min>1</min>
+						<max>500000</max>
+					</generator>
+				</field>
+
+				<field name="K40K">
+					<type>java.sql.Types.INTEGER</type>
+					<primary>false</primary>
+					<unique>false</unique>
+					<size></size>
+					<generator name="SetQuery">
+						<distribution name=""></distribution>						
+						<rng name=""></rng>
+						<min>1</min>
+						<max>500000</max>
+					</generator>
+				</field>
+
+				<field name="K10K">
+					<type>java.sql.Types.INTEGER</type>
+					<primary>false</primary>
+					<unique>false</unique>
+					<size></size>
+					<generator name="SetQuery">
+						<distribution name=""></distribution>						
+						<rng name=""></rng>
+						<min>1</min>
+						<max>500000</max>
+					</generator>
+				</field>
+
+				<field name="K1K">
+					<type>java.sql.Types.INTEGER</type>
+					<primary>false</primary>
+					<unique>false</unique>
+					<size></size>
+					<generator name="SetQuery">
+						<distribution name=""></distribution>						
+						<rng name=""></rng>
+						<min>1</min>
+						<max>500000</max>
+					</generator>
+				</field>
+
+				<field name="K100">
+					<type>java.sql.Types.INTEGER</type>
+					<primary>false</primary>
+					<unique>false</unique>
+					<size></size>
+					<generator name="SetQuery">
+						<distribution name=""></distribution>						
+						<rng name=""></rng>
+						<min>1</min>
+						<max>500000</max>
+					</generator>
+				</field>
+
+				<field name="K25">
+					<type>java.sql.Types.INTEGER</type>
+					<primary>false</primary>
+					<unique>false</unique>
+					<size></size>
+					<generator name="SetQuery">
+						<distribution name=""></distribution>						
+						<rng name=""></rng>
+						<min>1</min>
+						<max>500000</max>
+					</generator>
+				</field>
+
+				<field name="K10">
+					<type>java.sql.Types.INTEGER</type>
+					<primary>false</primary>
+					<unique>false</unique>
+					<size></size>
+					<generator name="SetQuery">
+						<distribution name=""></distribution>						
+						<rng name=""></rng>
+						<min>1</min>
+						<max>500000</max>
+					</generator>
+				</field>
+
+				<field name="K5">
+					<type>java.sql.Types.INTEGER</type>
+					<primary>false</primary>
+					<unique>false</unique>
+					<size></size>
+					<generator name="SetQuery">
+						<distribution name=""></distribution>						
+						<rng name=""></rng>
+						<min>1</min>
+						<max>500000</max>
+					</generator>
+				</field>
+
+				<field name="K4">
+					<type>java.sql.Types.INTEGER</type>
+					<primary>false</primary>
+					<unique>false</unique>
+					<size></size>
+					<generator name="SetQuery">
+						<distribution name=""></distribution>						
+						<rng name=""></rng>
+						<min>1</min>
+						<max>500000</max>
+					</generator>
+				</field>
+
+				<field name="K2">
+					<type>java.sql.Types.INTEGER</type>
+					<primary>false</primary>
+					<unique>false</unique>
+					<size></size>
+					<generator name="SetQuery">
+						<distribution name=""></distribution>						
+						<rng name=""></rng>
+						<min>1</min>
+						<max>500000</max>
+					</generator>
+				</field>
+				
+				<field name="S1">
+					<type>java.sql.Types.VARCHAR</type>
+					<primary>false</primary>
+					<unique>false</unique>
+					<size></size>
+					<generator name="StaticValueGenerator">
+						<distribution name=""></distribution>						
+						<rng name=""></rng>
+						<value>12345678</value>
+					</generator>
+				</field>
+				
+				<field name="S2">
+					<type>java.sql.Types.VARCHAR</type>
+					<primary>false</primary>
+					<unique>false</unique>
+					<size></size>
+					<generator name="StaticValueGenerator">
+						<distribution name=""></distribution>						
+						<rng name=""></rng>
+						<value>12345678900987654321</value>
+					</generator>
+				</field>
+				
+				<field name="S3">
+					<type>java.sql.Types.VARCHAR</type>
+					<primary>false</primary>
+					<unique>false</unique>
+					<size></size>
+					<generator name="StaticValueGenerator">
+						<distribution name=""></distribution>						
+						<rng name=""></rng>
+						<value>12345678900987654321</value>
+					</generator>
+				</field>
+				
+				<field name="S4">
+					<type>java.sql.Types.VARCHAR</type>
+					<primary>false</primary>
+					<unique>false</unique>
+					<size></size>
+					<generator name="StaticValueGenerator">
+						<distribution name=""></distribution>						
+						<rng name=""></rng>
+						<value>12345678900987654321</value>
+					</generator>
+				</field>
+				
+				<field name="S5">
+					<type>java.sql.Types.VARCHAR</type>
+					<primary>false</primary>
+					<unique>false</unique>
+					<size></size>
+					<generator name="StaticValueGenerator">
+						<distribution name=""></distribution>						
+						<rng name=""></rng>
+						<value>12345678900987654321</value>
+					</generator>
+				</field>
+				
+				<field name="S6">
+					<type>java.sql.Types.VARCHAR</type>
+					<primary>false</primary>
+					<unique>false</unique>
+					<size></size>
+					<generator name="StaticValueGenerator">
+						<distribution name=""></distribution>						
+						<rng name=""></rng>
+						<value>12345678900987654321</value>
+					</generator>
+				</field>
+				
+				<field name="S7">
+					<type>java.sql.Types.VARCHAR</type>
+					<primary>false</primary>
+					<unique>false</unique>
+					<size></size>
+					<generator name="StaticValueGenerator">
+						<distribution name=""></distribution>						
+						<rng name=""></rng>
+						<value>12345678900987654321</value>
+					</generator>
+				</field>
+				
+				<field name="S8">
+					<type>java.sql.Types.VARCHAR</type>
+					<primary>false</primary>
+					<unique>false</unique>
+					<size></size>
+					<generator name="StaticValueGenerator">
+						<distribution name=""></distribution>						
+						<rng name=""></rng>
+						<value>12345678900987654321</value>
+					</generator>
+				</field>
+
+				
+			</fields>
+		</table>
+		
+	</tables>
+	
+		
+</project>
+
+
