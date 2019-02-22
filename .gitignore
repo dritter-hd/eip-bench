@@ -38,4 +38,3 @@ git.properties
 !bundles/**/src/main/resources/META-INF/
 .DS_Store
 *~
-**/.pump/
