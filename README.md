@@ -1,4 +1,4 @@
-# eipbench
+# eipbench [![Build Status](https://travis-ci.org/dritter-hd/dlog.svg?branch=master)](https://travis-ci.org/dritter-hd/eipbench)
 
 ## License
 
