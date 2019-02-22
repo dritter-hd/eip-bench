@@ -46,7 +46,6 @@
             <groupId>com.eipbench</groupId>
             <artifactId>pdgf</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <!-- <scope>test</scope> -->
         </dependency>
 
         <!-- jackson json -->
