@@ -11,4 +11,8 @@
 
     <artifactId>client</artifactId>
     <packaging>pom</packaging>
+
+    <modules>
+        <module>jmh-tests</module>
+    </modules>
 </project>
