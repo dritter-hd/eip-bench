@@ -76,6 +76,17 @@
             <systemPath>${project.basedir}/lib/dlog-1.0.0.jar</systemPath>
         </dependency>
         <dependency>
+            <groupId>org.antlr</groupId>
+            <artifactId>antlr</artifactId>
+            <version>3.1.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.antlr</groupId>
+            <artifactId>antlr-runtime</artifactId>
+            <version>3.1.3</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.curiousdev</groupId>
             <artifactId>xtchart</artifactId>
             <version>1.0.0</version>
