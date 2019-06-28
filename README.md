@@ -1,5 +1,7 @@
 # eipbench [![Build Status](https://travis-ci.org/dritter-hd/eip-bench.svg?branch=master)](https://travis-ci.org/dritter-hd/eip-bench)
 
+EIPBench is probably the first systematically defined integration pattern-centric micro-benchmark.
+
 ## License
 
 Apache 2.0 license [here](https://github.com/dritter-hd/dlog/blob/master/LICENSE)
