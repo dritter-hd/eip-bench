@@ -1,6 +1,6 @@
 # eipbench [![Build Status](https://travis-ci.org/dritter-hd/eip-bench.svg?branch=master)](https://travis-ci.org/dritter-hd/eip-bench)
 
-EIPBench is probably the first systematically defined integration pattern-centric micro-benchmark. The benchmarks will be added hereafter for Apache Camel and a table-centric extension of Apache Camel.
+EIPBench is probably the first systematically defined integration pattern-centric micro-benchmark. The benchmarks and required data files will be added hereafter for Apache Camel and a table-centric extension of Apache Camel.
 
 ## License
 
