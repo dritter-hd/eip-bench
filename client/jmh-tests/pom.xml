@@ -75,6 +75,13 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/dlog-1.0.0.jar</systemPath>
         </dependency>
+        <dependency>
+            <groupId>com.curiousdev</groupId>
+            <artifactId>xtchart</artifactId>
+            <version>1.0.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/xtchart-1.0-SNAPSHOT.jar</systemPath>
+        </dependency>
 
         <dependency>
             <groupId>de.javakaffee</groupId>
