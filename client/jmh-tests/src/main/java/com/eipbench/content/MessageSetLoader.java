@@ -146,6 +146,20 @@ public class MessageSetLoader {
         System.out.println("Message list size (JSON / DataIterator): " + messagesList.size() + " / " + datalogMessagesList.size());
     }
 
+    public void parseBeam(int batchSize, boolean parallel) {
+        datalogMessagesList = new CopyOnWriteArrayList<Collection<IFacts>>();
+
+        System.out.println("Convert to datalog message list with batch size " + batchSize);
+        List<Collection<IFacts>> datalogMessages;
+        if (parallel) {
+            datalogMessages = transformJsonNodeToIFactsNative2(messagesList, batchSize);
+        } else {
+            datalogMessages = transformJsonNodeToIFactsNative(flatMessages, batchSize);
+        }
+        datalogMessagesList.addAll(datalogMessages);
+        System.out.println("Message list size (JSON / DataIterator): " + messagesList.size() + " / " + datalogMessagesList.size());
+    }
+
     public synchronized Iterator<Collection<IFacts>> getDatalogMessageListIterator() {
         return datalogMessagesList.iterator();
     }
