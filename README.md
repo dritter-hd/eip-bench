@@ -1,6 +1,6 @@
 # eipbench [![Build Status](https://travis-ci.org/dritter-hd/eip-bench.svg?branch=master)](https://travis-ci.org/dritter-hd/eip-bench)
 
-EIPBench is probably the first systematically defined integration pattern-centric micro-benchmark.
+EIPBench is probably the first systematically defined integration pattern-centric micro-benchmark. The benchmarks will be added hereafter for Apache Camel and a table-centric extension of Apache Camel.
 
 ## License
 
@@ -19,5 +19,14 @@ If you find this work useful for your research, please cite (for which the bench
   organization={ACM}
 }
 ```
-
-
+and for the table-centric Apache Camel extension:
+```
+@inproceedings{ritter2015towards,
+  title={Towards more data-aware application integration},
+  author={Ritter, Daniel},
+  booktitle={British International Conference on Databases},
+  pages={16--28},
+  year={2015},
+  organization={Springer}
+}
+```
