@@ -38,11 +38,11 @@
             <version>2.14.0</version>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>com.github.dritter-hd</groupId>
             <artifactId>dlog</artifactId>
             <version>1.0.0</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>com.eipbench</groupId>
             <artifactId>pdgf</artifactId>
@@ -67,6 +67,13 @@
             <version>0.9.1</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/VectorGraphics2D-0.9.1.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.github.dritter-hd</groupId>
+            <artifactId>dlog</artifactId>
+            <version>1.0.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/dlog-1.0.0.jar</systemPath>
         </dependency>
 
         <dependency>
