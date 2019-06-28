@@ -1,5 +1,2 @@
 language: java
-jdk:
-  - oraclejdk8
-  - oraclejdk9
 script: "mvn -f pom.xml clean install"
