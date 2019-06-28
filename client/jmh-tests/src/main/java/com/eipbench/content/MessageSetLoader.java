@@ -1,4 +1,4 @@
-package com.eipbench.generator;
+package com.eipbench.content;
 
 import com.eipbench.camel.JsonDatalogDataFormat;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -8,7 +8,6 @@ import com.fasterxml.jackson.databind.ObjectReader;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.github.dritter.hd.dlog.IFacts;
 import com.github.dritter.hd.dlog.Facts;
-import com.github.dritter.hd.dlog.IFacts;
 import com.github.dritter.hd.dlog.Predicate;
 import com.github.dritter.hd.dlog.algebra.DataIterator;
 import com.github.dritter.hd.dlog.algebra.FillableTableIterator;

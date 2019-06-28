@@ -1,4 +1,4 @@
-package com.eipbench.config;
+package com.eipbench;
 
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;

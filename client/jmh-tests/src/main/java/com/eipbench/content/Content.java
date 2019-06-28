@@ -1,6 +1,6 @@
-package com.eipbench.states;
+package com.eipbench.content;
 
-import com.eipbench.generator.MessageSetLoader;
+import com.eipbench.content.MessageSetLoader;
 import org.openjdk.jmh.annotations.Param;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.State;

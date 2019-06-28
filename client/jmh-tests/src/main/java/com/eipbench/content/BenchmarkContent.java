@@ -1,4 +1,4 @@
-package com.eipbench;
+package com.eipbench.content;
 
 import org.apache.camel.builder.RouteBuilder;
 

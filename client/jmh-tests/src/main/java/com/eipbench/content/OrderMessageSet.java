@@ -1,4 +1,4 @@
-package com.eipbench.generator;
+package com.eipbench.content;
 
 import java.io.File;
 

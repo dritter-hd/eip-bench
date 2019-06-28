@@ -1,6 +1,6 @@
 package com.eipbench.states.datalog;
 
-import com.eipbench.Constants;
+import com.eipbench.content.Constants;
 import org.openjdk.jmh.annotations.Level;
 import org.openjdk.jmh.annotations.Setup;
 

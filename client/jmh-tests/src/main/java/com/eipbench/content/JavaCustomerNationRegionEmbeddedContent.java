@@ -1,4 +1,4 @@
-package com.eipbench.states.java;
+package com.eipbench.content;
 
 import com.eipbench.camel.CustomerNationRegionEmbeddedMessageSet;
 

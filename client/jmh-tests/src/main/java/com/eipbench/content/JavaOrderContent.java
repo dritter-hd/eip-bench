@@ -1,6 +1,4 @@
-package com.eipbench.states.java;
-
-import com.eipbench.generator.OrderMessageSet;
+package com.eipbench.content;
 
 public class JavaOrderContent extends JavaContent {
     public JavaOrderContent() {

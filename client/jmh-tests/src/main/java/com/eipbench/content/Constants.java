@@ -1,4 +1,4 @@
-package com.eipbench;
+package com.eipbench.content;
 
 public class Constants {
     public enum TYPE {

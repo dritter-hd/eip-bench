@@ -1,12 +1,12 @@
 package com.eipbench.camel;
 
-import com.eipbench.BenchmarkContent;
-import com.eipbench.Constants.*;
-import com.eipbench.generator.OrderMessageSet;
+import com.eipbench.content.BenchmarkContent;
+import com.eipbench.content.Constants.*;
+import com.eipbench.content.OrderMessageSet;
 import org.apache.camel.Expression;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.language.ExpressionDefinition;
-import com.eipbench.generator.OrderMessageSet.OrderNames;
+import com.eipbench.content.OrderMessageSet.OrderNames;
 import com.eipbench.camel.CustomerNationRegionEmbeddedMessageSet.*;
 import com.eipbench.camel.CustomerNationRegionMultiformatMessageSet.*;
 

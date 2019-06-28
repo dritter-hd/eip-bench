@@ -1,9 +1,9 @@
 package com.eipbench.states.datalog;
 
-import com.eipbench.states.Content;
+import com.eipbench.content.Content;
 import com.eipbench.states.fast.FastDatalogMessageBatchSet;
 import com.github.dritter.hd.dlog.IFacts;
-import com.eipbench.generator.OrderMessageSet;
+import com.eipbench.content.OrderMessageSet;
 import org.openjdk.jmh.annotations.Level;
 import org.openjdk.jmh.annotations.Setup;
 

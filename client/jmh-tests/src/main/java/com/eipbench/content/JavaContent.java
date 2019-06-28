@@ -1,9 +1,9 @@
-package com.eipbench.states.java;
+package com.eipbench.content;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.eipbench.states.Content;
+import com.eipbench.content.Content;
 import com.eipbench.states.fast.FastJsonMessageBatchSet;
-import com.eipbench.generator.OrderMessageSet;
+import com.eipbench.content.OrderMessageSet;
 import org.openjdk.jmh.annotations.Level;
 import org.openjdk.jmh.annotations.Setup;
 

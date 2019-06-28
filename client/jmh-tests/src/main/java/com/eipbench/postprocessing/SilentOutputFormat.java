@@ -1,4 +1,4 @@
-package com.eipbench;
+package com.eipbench.postprocessing;
 
 import org.openjdk.jmh.infra.BenchmarkParams;
 import org.openjdk.jmh.infra.IterationParams;

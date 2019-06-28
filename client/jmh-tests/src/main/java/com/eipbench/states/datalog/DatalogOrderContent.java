@@ -1,6 +1,6 @@
 package com.eipbench.states.datalog;
 
-import com.eipbench.generator.OrderMessageSet;
+import com.eipbench.content.OrderMessageSet;
 
 public class DatalogOrderContent extends DatalogContent {
     public DatalogOrderContent() {

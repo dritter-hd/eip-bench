@@ -2,10 +2,10 @@ package com.eipbench;
 
 import com.eipbench.benchmarks.CjBl;
 import com.eipbench.benchmarks.IntegrationPatternBenchmark;
-import com.eipbench.config.OptionsConfig;
-import com.eipbench.generator.OrderMessageSet;
+import com.eipbench.content.OrderMessageSet;
 import com.eipbench.postprocessing.ChartGroup;
 import com.eipbench.postprocessing.ResultBundle;
+import com.eipbench.postprocessing.SilentOutputFormat;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Output;
 import com.eipbench.pdgf.TpchDataGenerator;

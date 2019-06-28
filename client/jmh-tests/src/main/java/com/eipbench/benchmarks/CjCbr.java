@@ -1,5 +1,8 @@
 package com.eipbench.benchmarks;
 
+import com.eipbench.content.JavaCustomerNationRegionEmbeddedContent;
+import com.eipbench.content.JavaCustomerNationRegionMultiformatContent;
+import com.eipbench.content.JavaOrderContent;
 import com.eipbench.states.java.*;
 import org.openjdk.jmh.annotations.Benchmark;
 

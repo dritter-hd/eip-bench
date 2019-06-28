@@ -1,7 +1,7 @@
 package com.eipbench.camel;
 
-import com.eipbench.Constants;
-import com.eipbench.Constants.*;
+import com.eipbench.content.Constants;
+import com.eipbench.content.Constants.*;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;

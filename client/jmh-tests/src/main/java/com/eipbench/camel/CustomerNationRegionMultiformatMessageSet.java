@@ -1,6 +1,6 @@
 package com.eipbench.camel;
 
-import com.eipbench.generator.MessageSetLoader;
+import com.eipbench.content.MessageSetLoader;
 
 import java.io.File;
 

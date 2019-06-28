@@ -1,6 +1,6 @@
 package com.eipbench.states;
 
-import com.eipbench.Constants;
+import com.eipbench.content.Constants;
 import org.apache.camel.*;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.impl.DefaultCamelContext;

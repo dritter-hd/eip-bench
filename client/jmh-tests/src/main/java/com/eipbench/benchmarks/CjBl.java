@@ -1,7 +1,7 @@
 package com.eipbench.benchmarks;
 
 import com.eipbench.states.java.JavaBaseline;
-import com.eipbench.states.java.JavaOrderContent;
+import com.eipbench.content.JavaOrderContent;
 import org.openjdk.jmh.annotations.Benchmark;
 
 public class CjBl extends IntegrationPatternBenchmark {
