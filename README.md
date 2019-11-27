@@ -30,3 +30,5 @@ and for the table-centric Apache Camel extension:
   organization={Springer}
 }
 ```
+
+[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4BHCBCD9WRYS6&source=url)
